@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+    font-size: 62.5%;
+}
+
+:root {
+    /* Colors */
+    --white: #e8f1f2;
+    --blue: #8093f1;
+    --gray: #495159;
+    --red: #e65f5c;
+    --green: #e6f14a;
+
+    /* font family and weight */
+    --font: 'Roboto', sans-serif;
+    --thin-weight: 100;
+    --light-weight: 300;
+    --regular-weight: 400;
+    --bold-weight: 700;
+
+    /* font size */
+    --small-font: 1rem;
+    --regular-font:2rem;
+    --big-font: 3rem;
+    --bigger-font: 4rem;
+}
+
+html {
+    font-family: var(--font);
+    font-weight: var(--regular-weight);
+    color: var(--gray);
+}

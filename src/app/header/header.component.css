@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+    background-color: var(--blue);
+    margin: 0;
+}
+
+.header__title {
+    color:  var(--white);
+    font-weight: var(--bold-weight);
+    margin: 0;
+    padding: 2rem;
+    font-size: var(--bigger-font);
+    font-style: italic;
+}
