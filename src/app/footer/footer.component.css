@@ -9,4 +9,5 @@
     color: var(--white);
     font-size: var(--regular-font);
     padding: 6rem 0;
+    font-weight: var(--bold-weight);
 }
