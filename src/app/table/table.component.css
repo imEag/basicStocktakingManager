@@ -1,0 +1,32 @@
+.title {
+    text-align: left;
+    font-size: var(--big-font);
+    font-weight: var(--bold-weight);
+    margin: 3rem 0 0 0;
+}
+
+table{
+    border-collapse: collapse;
+    border: .1rem solid var(--gray);
+    text-align: center;
+    font-size: var(--regular-font);
+    font-weight: var(--regular-weight);
+}
+
+th, td {
+    border: .1rem solid var(--gray);
+    padding: 1rem;
+}
+
+th {
+    font-weight: var(--bold-weight);
+    font-size: var(--regular-font);
+    width: 20%;
+}
+
+th:nth-child(1), th:nth-child(4) {
+    width: 10%;
+}
+input {
+    border: none;
+}

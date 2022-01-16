@@ -29,3 +29,12 @@ html {
     font-weight: var(--regular-weight);
     color: var(--gray);
 }
+
+.container {
+    width: 120rem;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
