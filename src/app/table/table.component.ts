@@ -22,13 +22,14 @@ export class TableComponent implements OnInit {
       "1": ["1", "food", "cereal", 10],
       "2": ["2", "clothing", "pants", 12]
     } //rows only stores 4 values per row (id, kind, name, stock)
+    
     this.testRow = ["3", "bsdad", "csdaf", 15]
   }
 
   ngOnInit(): void {
   }
 
-  setRow(row: any): void {
+  setRow(row: Array<any>): void {
     this.rows[row[0]] = row;
   }
 
