@@ -1,0 +1,9 @@
+.home {
+
+}
+
+.home__stocktaking {
+    height: 25%;
+    width: 25%;
+    background-color: red;
+}

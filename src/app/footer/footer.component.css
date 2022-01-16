@@ -11,3 +11,7 @@
     padding: 6rem 0;
     font-weight: var(--bold-weight);
 }
+
+p {
+    margin: 0;
+}
