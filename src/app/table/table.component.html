@@ -1,1 +1,30 @@
-<p>table works!</p>
+<section class="container">
+    <button (click)="setRow(testRow)">Push</button>
+    <h3 class="title">{{title}}</h3>
+    <table>
+        <tr>
+            <th *ngFor="let column of column_names">{{column}}</th>
+        </tr>
+        <!-- this fills the table with rows -->
+        <tr *ngFor="let row of getAllRowsAsArray()">
+
+            <!-- fills each row with its information and buttons -->
+            <!-- ngModule is used to save the data changed in the interface -->
+            <!-- rows[row[0]][0] means: rows object -> id -> index of the list  -->
+            <td>{{row[0]}}</td>
+            <td><input type="" value="{{row[1]}}" [(ngModel)]="rows[row[0]][1]"></td>
+            <td><input type="" value="{{row[2]}}" [(ngModel)]="rows[row[0]][2]"></td>
+            <td><input type="" value="{{row[3]}}" [(ngModel)]="rows[row[0]][3]"></td>
+            <td>
+                <button>Edit</button>
+
+                <!-- row[0] is the id of the product -->
+                <button (click)="deleteRow(row[0])">Delete</button>
+            </td>
+            <td>
+                <button (click)="decreaseStock(row[0])">-</button>
+                <button (click)="increaseStock(row[0])">+</button>
+            </td>
+        </tr>
+    </table>
+</section>
