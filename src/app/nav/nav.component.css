@@ -1,0 +1,12 @@
+.nav {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.nav__a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: var(--regular-font);
+    font-weight: var(--bold-weight);
+}
