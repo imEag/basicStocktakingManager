@@ -2,6 +2,9 @@
     width: 100%;
     background-color: var(--blue);
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header__title {
@@ -11,4 +14,10 @@
     padding: 2rem;
     font-size: var(--bigger-font);
     font-style: italic;
+    transition: all 300ms ease-in-out;
+}
+
+.header__title:hover {
+    color: var(--gray);
+    transform: scale(1.04);
 }
