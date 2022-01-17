@@ -1,56 +1,101 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
+import { elementAt } from 'rxjs';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
+  providers: [ProductService]
 })
 export class TableComponent implements OnInit {
 
   public title: string;
   public column_names: string[];
-  public rows: any;
+  public rows: Array<any>;
 
-  public testRow: Array<any>;
   
-  constructor() {
-    this.title = "Products table"
-    this.column_names = ["Id", "Kind", "Name", "Existing stock", "Modify info", "Change stock" ]
-    /* this.rows=[["a", "b", "c", "d"], ["a1", "bd", "cf", "df"]] */
-    this.rows = {
-      "1": ["1", "food", "cereal", 10],
-      "2": ["2", "clothing", "pants", 12]
-    } //rows only stores 4 values per row (id, kind, name, stock)
+  constructor(
+    private _productService: ProductService
+  ) {
+    this.title = "Products table";
+
+    //column names (table headers)
+    this.column_names = ["Id", "Kind", "Name", "Existing stock", "Modify info", "Change stock" ];
     
-    this.testRow = ["3", "bsdad", "csdaf", 15]
+    this.rows = [];
   }
 
   ngOnInit(): void {
+    this.rows = this._productService.getProducts(); //fills table with data when the app is loaded
+    console.log(this.rows);
   }
 
-  setRow(row: Array<any>): void {
-    this.rows[row[0]] = row;
+  ngDoCheck() {
+    console.log('Cambios!! ', this.rows) // shows this.rows in console every time it detects a change to any property
+    
+    //Every time that the user modifies the 'stock' fields it is stored as string
+    //This function converts every stock field to integer again.
+    this.keepStockAsInteger();
+
+
   }
 
-  getAllRowsAsArray(): Array<any> {
-    let rows_obj = this.rows
-    let rows_array = Object.values(rows_obj)
-    return rows_array
+  setRow(row: any): void {
+    //pushed a row into the rows array. row must be an object of type Product.
+    this.rows.push(row)
+  }
+
+  getRows(): Array<any> {
+    return this.rows;
   }
 
   deleteRow(id: string): void {
-    delete this.rows[id]
+    // deletes the row that the user clicked.
+
+    // get the element of the given id 
+    let element = this.rows.find(element => element.id == id);
+    
+    // finds it's index
+    let index = this.rows.indexOf(element)
+    
+    //deletes the element in the array with the index given
+    this.rows.splice(index,1)
+  }
+
+  keepStockAsInteger() {
+    //Every time that the user modifies the 'stock' fields it is stored as string
+    //This function converts every stock field to integer again.
+
+    this.rows.forEach((element, index)=> {
+      let intStock = parseInt(element.stock);
+      this.rows[index].stock = intStock
+    });
   }
 
   decreaseStock(id: string): void {
-    let oldNumber = parseInt(this.rows[id][3])
-    this.rows[id][3] = oldNumber -= 1
+    //decreases the counter of stock in one
+
+    // get the element of the given id 
+    let element = this.rows.find(element => element.id == id);
+
+    // finds it's index
+    let index = this.rows.indexOf(element)
+
+    //decreases it's value
+    this.rows[index].stock -= 1
   }
   
   increaseStock(id: string): void {
-    let oldNumber = parseInt(this.rows[id][3])
-    this.rows[id][3] = oldNumber += 1
+    //increases the counter of stock in one
+
+    // get the element of the given id 
+    let element = this.rows.find(element => element.id == id);
+
+    // finds it's index
+    let index = this.rows.indexOf(element)
+    //increases it's value
+    this.rows[index].stock += 1
   }
 
 }
