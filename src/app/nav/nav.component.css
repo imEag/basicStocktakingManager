@@ -9,4 +9,10 @@
     text-decoration: none;
     font-size: var(--regular-font);
     font-weight: var(--bold-weight);
+    transition: all 300ms ease-in-out;
+}
+
+.nav__a:hover {
+    color: var(--gray);
+    transform: scale(1.1);
 }
