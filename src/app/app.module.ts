@@ -10,6 +10,7 @@ import { TableComponent } from './table/table.component';
 import { HomeComponent } from './home/home.component';
 import { Page404Component } from './page404/page404.component';
 import { NavComponent } from './nav/nav.component';
+import { TableFormComponent } from './table-form/table-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavComponent } from './nav/nav.component';
     TableComponent,
     HomeComponent,
     Page404Component,
-    NavComponent
+    NavComponent,
+    TableFormComponent
   ],
   imports: [
     BrowserModule,

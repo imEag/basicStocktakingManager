@@ -4,6 +4,7 @@ import { Product } from '../models/product';
 @Injectable()
 export class ProductService {
   public products: any;
+  public product_kinds: Array<String>;
 
   constructor() {
     this.products = [
@@ -20,9 +21,15 @@ export class ProductService {
       new Product('11', 'Electronics', 'Samsung A52', 6),
       new Product('12', 'clothing', 'White T-shirt', 21)
     ];
+
+    this.product_kinds = ['Food', 'Clothing', 'Phones and Tablets', 'Electrodomestics', 'Cosmetics', 'Vehicle Accessories']
   }
 
   getProducts(): any {
     return this.products;
+  }
+
+  getProductKinds(): Array<String> {
+    return this.product_kinds;
   }
 }
