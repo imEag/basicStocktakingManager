@@ -1,9 +1,8 @@
-<h3>Add new products</h3>
-<h4>Fill this form to add data into the table</h4>
-
+<h3 class="form--title">Add new products</h3>
+<h4 class="form--subtitle">Fill this form to add data into the table</h4>
 <form action="" class="table_form" #TableForm="ngForm" (ngSubmit)="onSubmit(TableForm)">
-
-    <div class="table_form--field_container">
+    
+    <div class="table_form__field_container">
         <label for="id">Product ID</label>
         <!-- ngModel = product.id modifies the id value of product -->
         <input type="number" name="id" #input_id="ngModel" [(ngModel)]="product.id" required>
@@ -13,7 +12,7 @@
         </span>
     </div>
 
-    <div class="table_form--field_container">
+    <div class="table_form__field_container">
         <label for="kind">Product kind</label>
         <select name="kind" id="select_kind" #input_kind="ngModel" [(ngModel)]="product.kind" required>
             <option *ngFor="let kind of product_kinds" value="{{kind}}">{{kind}}</option>
@@ -23,7 +22,7 @@
         </span>
     </div>
 
-    <div class="table_form--field_container">
+    <div class="table_form__field_container">
         <label for="name">Product Name</label>
         <input type="text" name="name" #input_name="ngModel" [(ngModel)]="product.name" required>
         <span class="table_form--warning" *ngIf="input_name.touched && !input_name.valid">
@@ -31,17 +30,18 @@
         </span>
     </div>
 
-    <div class="table_form--field_container">
+    <div class="table_form__field_container">
         <label for="stock">Existing stock</label>
         <input type="number" name="stock" #input_stock="ngModel" [(ngModel)]="product.stock" required>
         <span class="table_form--warning" *ngIf="input_stock.touched && !input_stock.valid">
             Stock field is required
         </span>
     </div>
-
+    
+    <!-- Clears all fields when clicked -->
+    <button class="table_form--clear" (click)="formReset(TableForm)">Clear all fields</button>
+    
     <!-- If any of the fields is not valid, the user will not ble able to submit the form -->
     <input type="submit" value="send" [disabled]="!TableForm.form.valid">
 
-    <!-- Clears all fields when clicked -->
-    <button class="table_form--clear" (click)="formReset(TableForm)">Clear all fields</button>
 </form>

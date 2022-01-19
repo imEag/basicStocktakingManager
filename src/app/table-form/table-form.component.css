@@ -1,0 +1,41 @@
+.form--title {
+    font-size: var(--big-font);
+    font-weight: var(--bold-weight);
+    margin: .5rem 0;
+}
+
+.form--subtitle {
+    font-size: var(--regular-font);
+    font-weight: var(--regular-weight);
+    margin: .2rem 0;
+}
+
+.table_form {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    font-size: var(--regular-font);
+    
+}
+
+.table_form__field_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5rem;
+}
+
+.table_form__field_container input, select {
+    width: 50%;
+}
+
+.table_form__field_container label {
+    font-weight: var(--bold-weight);
+}
+
+.table_form--warning {
+    color: red;
+    font-size: var(--small-font);
+}

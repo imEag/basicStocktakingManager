@@ -5,7 +5,12 @@
     margin: 3rem auto;
 }
 
-.title {
+.main_title {
+    font-size: var(--bigger-font);
+    text-align: center;
+}
+
+.table--title {
     text-align: left;
     font-size: var(--big-font);
     font-weight: var(--bold-weight);
