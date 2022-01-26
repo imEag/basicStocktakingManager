@@ -7,7 +7,7 @@ import { TableAndFormService } from '../services/tableAndForm.service';
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
-  providers: [ProductService, TableAndFormService]
+  providers: [ProductService]
 })
 export class TableComponent implements OnInit {
 
@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
   constructor(
     //creating service variables
     private _productService: ProductService,
+    //tableAndFormService is not included in providers because it is already iincluded in app.module.ts in providers
     private _tableAndFormService: TableAndFormService
   ) {
     this.title = "Products table";

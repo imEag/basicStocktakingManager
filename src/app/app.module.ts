@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { TableAndFormService } from './services/tableAndForm.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -27,7 +28,7 @@ import { TableFormComponent } from './table-form/table-form.component';
     BrowserModule,
     AppRoutingModule, FormsModule
   ],
-  providers: [AppRoutingModule],
+  providers: [AppRoutingModule, TableAndFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

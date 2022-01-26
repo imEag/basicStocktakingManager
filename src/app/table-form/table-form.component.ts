@@ -7,7 +7,7 @@ import { TableAndFormService } from '../services/tableAndForm.service';
   selector: 'app-table-form',
   templateUrl: './table-form.component.html',
   styleUrls: ['./table-form.component.css'], 
-  providers: [ProductService, TableAndFormService]
+  providers: [ProductService]
 })
 export class TableFormComponent implements OnInit {
   
@@ -18,6 +18,7 @@ export class TableFormComponent implements OnInit {
   constructor(
     //creating service variables
     private _productService: ProductService,
+    //tableAndFormService is not included in providers because it is already iincluded in app.module.ts in providers
     private _tableAndFormService: TableAndFormService
   ) { 
     this.product = new Product('', '', '', 0);
@@ -38,7 +39,7 @@ export class TableFormComponent implements OnInit {
   
   onSubmit(current_form: any): void {
     let pre_message = current_form.form.value;
-    let message = new Product(pre_message.id, pre_message.kind, pre_message.name, pre_message.stock)
+    let message = new Product(pre_message.id.toString(), pre_message.kind, pre_message.name, pre_message.stock)
     
     //Submits information to service and the table listens to it to save and display the data
     this._tableAndFormService.sendMessage(message);
