@@ -1,7 +1,4 @@
-
-
 import { Component, OnInit, DoCheck, Input } from '@angular/core';
-import { elementAt } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 
@@ -35,11 +32,12 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rows = this._productService.getProducts(); //fills table with data when the app is loaded
-    
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
-    this._tableAndFormService.currentData.subscribe(received_data => console.log(received_data));
+    this._tableAndFormService.currentMessage.subscribe((message: any) => {
+      console.log(message);
+    });
     
+    this.rows = this._productService.getProducts(); //fills table with data when the app is loaded
   }
 
   ngDoCheck() {
@@ -112,5 +110,9 @@ export class TableComponent implements OnInit {
     //Submits information from selected row to form to be edited and then re-saved again
     this._tableAndFormService.sendData(row)
   } */
+
+  testService() {
+    this._tableAndFormService.sendMessage(this.rows[0]);
+  }
 
 }

@@ -10,6 +10,7 @@ import { TableAndFormService } from '../services/tableAndForm.service';
   providers: [ProductService, TableAndFormService]
 })
 export class TableFormComponent implements OnInit {
+  
   public product: Product;
   public product_kinds: Array<String>;
   public data_from_table: any;
@@ -25,8 +26,9 @@ export class TableFormComponent implements OnInit {
 
   ngOnInit(): void {
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
-    this._tableAndFormService.currentData.subscribe(received_data => this.data_from_table = received_data);
-
+    this._tableAndFormService.currentMessage.subscribe((message: any) => {
+      console.log(message);
+    });
     //Uses product service to get all product kinds and fill the select in the interface.
     this.product_kinds = this._productService.getProductKinds();
   }
@@ -35,8 +37,11 @@ export class TableFormComponent implements OnInit {
   }
   
   onSubmit(current_form: any): void {
+    let pre_message = current_form.form.value;
+    let message = new Product(pre_message.id, pre_message.kind, pre_message.name, pre_message.stock)
+    
     //Submits information to service and the table listens to it to save and display the data
-    this._tableAndFormService.sendData(current_form.form.value)
+    this._tableAndFormService.sendMessage(message);
 
     //Resets all fields
     //current_form.reset();
