@@ -4,6 +4,7 @@ import { Product } from "../models/product";
 
 @Injectable()
 export class TableAndFormService {
+    //This service is meant to be a data stream from the table to the form-table and viceversa
     
     public data: Subject<any>;
     public currentMessage: any;

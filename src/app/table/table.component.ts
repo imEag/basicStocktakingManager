@@ -1,4 +1,5 @@
-import { Component, OnInit, DoCheck, Input } from '@angular/core';
+import { Component, OnInit, DoCheck, Input, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 
@@ -9,18 +10,20 @@ import { TableAndFormService } from '../services/tableAndForm.service';
   styleUrls: ['./table.component.css'],
   providers: [ProductService]
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
 
   public title: string;
   public column_names: string[];
   public rows: Array<any>;
   public data_from_form: any;
+  public subscription: any;
 
   
   constructor(
     //creating service variables
     private _productService: ProductService,
-    //tableAndFormService is not included in providers because it is already iincluded in app.module.ts in providers
+
+    //tableAndFormService is not included in providers because it is already included in app.module.ts in providers
     private _tableAndFormService: TableAndFormService
   ) {
     this.title = "Products table";
@@ -34,11 +37,15 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
-    this._tableAndFormService.currentMessage.subscribe((message: any) => {
+    this.subscription = this._tableAndFormService.currentMessage.subscribe((message: any) => {
       console.log(message);
     });
     
     this.rows = this._productService.getProducts(); //fills table with data when the app is loaded
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 
   ngDoCheck() {
@@ -48,6 +55,8 @@ export class TableComponent implements OnInit {
     //This function converts every stock field to integer again.
     this.keepStockAsInteger();
   }
+
+
 
   setRow(row: any): void {
     //pushed a row into the rows array. row must be an object of type Product.
