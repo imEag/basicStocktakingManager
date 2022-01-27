@@ -28,7 +28,13 @@ export class TableFormComponent implements OnInit, OnDestroy {
     //tableAndFormService is not included in providers because it is already included in app.module.ts in providers
     private _tableAndFormService: TableAndFormService
   ) {
+
+    /* This is the form.
+    it is built using reactiveFormsModule */
     this.form = new FormGroup({
+
+      /* first argument is the initial value of the input 
+      Second value is an array of validators*/
       id: new FormControl('',[Validators.required]),
       kind: new FormControl('',[Validators.required]),
       name: new FormControl('',[Validators.required]),
