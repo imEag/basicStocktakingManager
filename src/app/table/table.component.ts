@@ -1,5 +1,4 @@
 import { Component, OnInit, DoCheck, Input, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
@@ -39,7 +38,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
-    this.subscription = this._tableAndFormService.currentMessage.subscribe((message: any) => {
+    this.subscription = this._tableAndFormService.message_form_2_table.subscribe((message: any) => {
       this.addRow(message);
     });
     
@@ -120,7 +119,7 @@ export class TableComponent implements OnInit, OnDestroy {
   
   editRow(row: Product) {
     //Submits information from selected row to form to be edited and then re-saved again
-    this._tableAndFormService.sendMessage(row);
+    this._tableAndFormService.sendTable2Form(row);
   }
 
 }

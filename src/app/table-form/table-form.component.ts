@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
@@ -37,7 +36,7 @@ export class TableFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
-    this.subscription = this._tableAndFormService.currentMessage.subscribe((message: Product) => {
+    this.subscription = this._tableAndFormService.message_table_2_form.subscribe((message: Product) => {
       this.input_values = message;
     });
     //Uses product service to get all product kinds and fill the select in the interface.
@@ -56,7 +55,7 @@ export class TableFormComponent implements OnInit, OnDestroy {
     let message = new Product(pre_message.id.toString(), pre_message.kind, pre_message.name, pre_message.stock)
 
     //Submits information to service and the table listens to it to save and display the data
-    this._tableAndFormService.sendMessage(message);
+    this._tableAndFormService.sendForm2Table(message);
 
     //Resets all fields
     //current_form.reset();
