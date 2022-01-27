@@ -12,11 +12,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class TableFormComponent implements OnInit, OnDestroy {
 
+  /* This is the form.
+   it is built using reactiveFormsModule */
   public form: FormGroup;
 
   public product: Product;
   public product_kinds: Array<String>;
-  public data_from_table: any;
   public subscription: any;
   public input_values: any;
 
@@ -40,30 +41,31 @@ export class TableFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //Listens to any change made in the table and form service and saves that change into the data_from_form variable
+    //Listens to any change made in the tableAndForm service
     this.subscription = this._tableAndFormService.message_table_2_form.subscribe((message: Product) => {
       this.form.controls['id'].setValue(message.id);
       this.form.controls['kind'].setValue(message.kind);
       this.form.controls['name'].setValue(message.name);
       this.form.controls['stock'].setValue(message.stock);
     });
+
     //Uses product service to get all product kinds and fill the select in the interface.
     this.product_kinds = this._productService.getProductKinds();
     console.log(this.form)
   }
 
   ngOnDestroy(): void {
+    //Unsubscribes from tableAndForm service when this component is destroyed.
     this.subscription.unsubscribe();
   }
 
-  ngDoCheck(): void {
-  }
-
   onSubmit(): void {
-    let message = new Product(this.form.value.id,
+    let message = new Product(
+      this.form.value.id,
       this.form.value.kind,
       this.form.value.name, 
-      this.form.value.stock);
+      this.form.value.stock
+      );
 
     console.log(message);
     //Submits information to service and the table listens to it to save and display the data
@@ -74,6 +76,7 @@ export class TableFormComponent implements OnInit, OnDestroy {
   }
 
   formReset(): void {
+    //resets form values and validator
     this.form.reset();
   }
 

@@ -1,10 +1,19 @@
 <h3 class="form--title">Add new products</h3>
 <h4 class="form--subtitle">Fill this form to add data into the table</h4>
+
+<!-- This is a Reactive Form.
+     it is built using reactiveFormsModule -->
 <form action="" class="table_form" [formGroup]="form" >
     
     <div class="table_form__field_container">
         <label for="id">Product ID</label>
+
+        <!-- 'Required' attribute is included in the component.ts -->
         <input type="text" formControlName="id">
+
+        <!-- This is the validation message. 
+            It is displayed if the field is not valid 
+            and if it has been touched by the user -->
         <span class="table_form--warning" *ngIf="form.controls['id'].invalid && form.controls['id'].touched">
             Product ID field is required
         </span>
@@ -36,9 +45,6 @@
         </span>
     </div>
     
-    <p><strong>{{form.value.id}}-{{form.value.kind}}-{{form.value.name}}-{{form.value.stock}}</strong></p>
-    <p><strong>Form Status: {{form.status}} - ID Status {{form.controls['id'].status}}</strong></p>
-
     <button class="table_form--clear" (click)="formReset()">Clear all fields</button>
     
     <input type="submit" value="send" [disabled]="!form.valid" (click)="onSubmit()">
