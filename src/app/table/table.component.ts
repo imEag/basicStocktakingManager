@@ -3,6 +3,9 @@ import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 
+//TODO Create the function to sort the table according to id, kind, name or stock.
+//TODO Add a search bar to the table.
+//TODO Create an scrollin efect to the table.
 
 @Component({
   selector: 'app-table',
