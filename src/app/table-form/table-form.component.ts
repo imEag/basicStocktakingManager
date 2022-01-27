@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 
+
 @Component({
   selector: 'app-table-form',
   templateUrl: './table-form.component.html',
@@ -61,9 +62,14 @@ export class TableFormComponent implements OnInit, OnDestroy {
     //current_form.reset();
   }
 
-  formReset(form: any): void {
-    //Resets all fields
-    form.reset();
+  formReset(): void {
+    this.input_values = {
+      id: '',
+      kind: '',
+      name: '',
+      stock: 0
+    }
+
   }
 
 }

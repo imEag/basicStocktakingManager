@@ -3,7 +3,6 @@ import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 
-//FIXME when edit button is clicked it automatically pushes another row to the table with the same information
 
 @Component({
   selector: 'app-table',
@@ -50,14 +49,10 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   ngDoCheck() {
-    //console.log('Cambios!! ', this.rows) // shows this.rows in console every time it detects a change to any property
-    
     //Every time that the user modifies the 'stock' fields it is stored as string
     //This function converts every stock field to integer again.
     this.keepStockAsInteger();
   }
-
-
 
   addRow(row: any): void {
     //pushed a row into the rows array. row must be an object of type Product.
@@ -78,10 +73,10 @@ export class TableComponent implements OnInit, OnDestroy {
     let index = this.rows.indexOf(element)
     
     //deletes the element in the array with the index given
-    this.rows.splice(index,1)
+    this.rows.splice(index,-1)
   }
 
-  keepStockAsInteger() {
+  keepStockAsInteger(): void {
     //Every time that the user modifies the 'stock' fields it is stored as string
     //This function converts every stock field to integer again.
 

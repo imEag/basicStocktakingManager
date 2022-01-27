@@ -1,6 +1,6 @@
 <h3 class="form--title">Add new products</h3>
 <h4 class="form--subtitle">Fill this form to add data into the table</h4>
-<form action="" class="table_form" #TableForm="ngForm" (ngSubmit)="onSubmit(TableForm)">
+<form action="" class="table_form" #TableForm="ngForm" >
     
     <div class="table_form__field_container">
         <label for="id">Product ID</label>
@@ -39,9 +39,9 @@
     </div>
     
     <!-- Clears all fields when clicked -->
-    <button class="table_form--clear" (click)="formReset(TableForm)">Clear all fields</button>
+    <button class="table_form--clear" (click)="formReset()">Clear all fields</button>
     
     <!-- If any of the fields is not valid, the user will not ble able to submit the form -->
-    <input type="submit" value="send" [disabled]="!TableForm.form.valid">
+    <input type="submit" value="send" [disabled]="!TableForm.form.valid" (click)="onSubmit(TableForm)">
 
 </form>
