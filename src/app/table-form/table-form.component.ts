@@ -36,18 +36,16 @@ export class TableFormComponent implements OnInit, OnDestroy {
 
     this.product = new Product('', '', '', 0);
     this.product_kinds = [];
-    this.input_values = {
-      id: '',
-      kind: '',
-      name: '',
-      stock: 0
-    }
+    
   }
 
   ngOnInit(): void {
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
     this.subscription = this._tableAndFormService.message_table_2_form.subscribe((message: Product) => {
-      this.input_values = message;
+      this.form.controls['id'].setValue(message.id);
+      this.form.controls['kind'].setValue(message.kind);
+      this.form.controls['name'].setValue(message.name);
+      this.form.controls['stock'].setValue(message.stock);
     });
     //Uses product service to get all product kinds and fill the select in the interface.
     this.product_kinds = this._productService.getProductKinds();
