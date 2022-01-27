@@ -17,7 +17,7 @@
             <td><input type="" value="{{row.name}}" [(ngModel)]="row.name"></td>
             <td><input type="" value="{{row.stock}}" [(ngModel)]="row.stock"></td>
             <td>
-                <button>Edit</button>
+                <button (click)="editRow(row)">Edit</button>
                 <button (click)="deleteRow(row.id)">Delete</button>
             </td>
             <td>
@@ -26,7 +26,5 @@
             </td>
         </tr>
     </table>
-    <button class="testService" (click)="testService()">
-        Send data
-    </button>
+    
 </section>

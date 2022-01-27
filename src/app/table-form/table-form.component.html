@@ -5,7 +5,7 @@
     <div class="table_form__field_container">
         <label for="id">Product ID</label>
         <!-- ngModel = product.id modifies the id value of product -->
-        <input type="number" name="id" #input_id="ngModel" [(ngModel)]="product.id" required>
+        <input type="number" name="id" value="{{input_values.id}}" #input_id="ngModel" [(ngModel)]="product.id" required>
         <!-- verifies if the field was touched and if it is empty, in that case will display a warning message -->
         <span class="table_form--warning" *ngIf="input_id.touched && !input_id.valid">
             Product ID field is required
@@ -14,7 +14,7 @@
 
     <div class="table_form__field_container">
         <label for="kind">Product kind</label>
-        <select name="kind" id="select_kind" #input_kind="ngModel" [(ngModel)]="product.kind" required>
+        <select name="kind" id="select_kind" value="{{input_values.kind}}" #input_kind="ngModel" [(ngModel)]="product.kind" required>
             <option *ngFor="let kind of product_kinds" value="{{kind}}">{{kind}}</option>
         </select>
         <span class="table_form--warning" *ngIf="input_kind.touched && !input_kind.valid">
@@ -24,7 +24,7 @@
 
     <div class="table_form__field_container">
         <label for="name">Product Name</label>
-        <input type="text" name="name" #input_name="ngModel" [(ngModel)]="product.name" required>
+        <input type="text" name="name" value="{{input_values.name}}" #input_name="ngModel" [(ngModel)]="product.name" required>
         <span class="table_form--warning" *ngIf="input_name.touched && !input_name.valid">
             Product Name field is required
         </span>
@@ -32,7 +32,7 @@
 
     <div class="table_form__field_container">
         <label for="stock">Existing stock</label>
-        <input type="number" name="stock" #input_stock="ngModel" [(ngModel)]="product.stock" required>
+        <input type="number" name="stock" value="{{input_values.stock}}" #input_stock="ngModel" [(ngModel)]="product.stock" required>
         <span class="table_form--warning" *ngIf="input_stock.touched && !input_stock.valid">
             Stock field is required
         </span>

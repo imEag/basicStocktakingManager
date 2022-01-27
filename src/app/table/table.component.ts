@@ -1,8 +1,10 @@
 import { Component, OnInit, DoCheck, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 
+//FIXME when edit button is clicked it automatically pushes another row to the table with the same information
 
 @Component({
   selector: 'app-table',
@@ -38,7 +40,7 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //Listens to any change made in the table and form service and saves that change into the data_from_form variable
     this.subscription = this._tableAndFormService.currentMessage.subscribe((message: any) => {
-      console.log(message);
+      this.addRow(message);
     });
     
     this.rows = this._productService.getProducts(); //fills table with data when the app is loaded
@@ -58,9 +60,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
 
 
-  setRow(row: any): void {
+  addRow(row: any): void {
     //pushed a row into the rows array. row must be an object of type Product.
-    this.rows.push(row)
+    this.rows.push(row);
   }
 
   getRows(): Array<any> {
@@ -115,14 +117,10 @@ export class TableComponent implements OnInit, OnDestroy {
     this.rows[index].stock += 1
   }
 
-/* 
-  editRow(row) {
+  
+  editRow(row: Product) {
     //Submits information from selected row to form to be edited and then re-saved again
-    this._tableAndFormService.sendData(row)
-  } */
-
-  testService() {
-    this._tableAndFormService.sendMessage(this.rows[0]);
+    this._tableAndFormService.sendMessage(row);
   }
 
 }
