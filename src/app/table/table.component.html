@@ -18,7 +18,7 @@
             <td><input type="" value="{{row.stock}}" [(ngModel)]="row.stock"></td>
             <td>
                 <button (click)="editRow(row)">Edit</button>
-                <button (click)="deleteRow(row.id)">Delete</button>
+                <button (click)="deleteRow(row)">Delete</button>
             </td>
             <td>
                 <button (click)="decreaseStock(row.id)">-</button>

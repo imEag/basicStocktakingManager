@@ -4,6 +4,8 @@ import { ProductService } from '../services/product.service';
 import { TableAndFormService } from '../services/tableAndForm.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+//TODO Automatically add an id when no id is given
+
 @Component({
   selector: 'app-table-form',
   templateUrl: './table-form.component.html',
@@ -73,7 +75,6 @@ export class TableFormComponent implements OnInit, OnDestroy {
       this.form.value.stock
       );
 
-    console.log(message);
     //Submits information to service and the table listens to it to save and display the data
     this._tableAndFormService.sendForm2Table(message);
 

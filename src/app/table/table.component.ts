@@ -55,25 +55,30 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   addRow(row: any): void {
-    //pushed a row into the rows array. row must be an object of type Product.
-    this.rows.push(row);
+    // pushed a row into the rows array. If the id already exist, that row will be replaced by the new one. row must be an object of type Product.
+
+    let index = this.findRowindex(row.id);
+    
+    if (this.rows[index]) {
+      //If this row already exists, it will be replaced by the new one.
+      this.rows[index] = row;
+    } else {
+      this.rows.push(row)
+    }
   }
 
   getRows(): Array<any> {
     return this.rows;
   }
 
-  deleteRow(id: string): void {
-    // deletes the row that the user clicked.
+  deleteRow(row: any): void {
+    // Deletes the given row from the rows array.
 
-    // get the element of the given id 
-    let element = this.rows.find(element => element.id == id);
-    
     // finds it's index
-    let index = this.rows.indexOf(element)
+    let index = this.findRowindex(row.id);
     
     //deletes the element in the array with the index given
-    this.rows.splice(index,-1)
+    this.rows.splice(index,1)
   }
 
   keepStockAsInteger(): void {
@@ -114,7 +119,14 @@ export class TableComponent implements OnInit, OnDestroy {
   
   editRow(row: Product) {
     //Submits information from selected row to form to be edited and then re-saved again
+    this.deleteRow(row);
     this._tableAndFormService.sendTable2Form(row);
   }
 
+  findRowindex(given_id: string): any {
+    //given and id (string) returns a number or array of numbers with the index of the element in the 'rows' array with the id given. 
+    let element = this.rows.find(element => element.id === given_id);
+    let index = this.rows.indexOf(element);
+    return index;
+  }
 }
