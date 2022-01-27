@@ -61,25 +61,22 @@ export class TableFormComponent implements OnInit, OnDestroy {
   ngDoCheck(): void {
   }
 
-  onSubmit(current_form: any): void {
-    let pre_message = current_form.form.value;
-    let message = new Product(pre_message.id.toString(), pre_message.kind, pre_message.name, pre_message.stock)
+  onSubmit(): void {
+    let message = new Product(this.form.value.id,
+      this.form.value.kind,
+      this.form.value.name, 
+      this.form.value.stock);
 
+    console.log(message);
     //Submits information to service and the table listens to it to save and display the data
     this._tableAndFormService.sendForm2Table(message);
 
     //Resets all fields
-    //current_form.reset();
+    this.formReset();
   }
 
   formReset(): void {
-    this.input_values = {
-      id: '',
-      kind: '',
-      name: '',
-      stock: 0
-    }
-
+    this.form.reset();
   }
 
 }

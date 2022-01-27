@@ -38,43 +38,8 @@
     
     <p><strong>{{form.value.id}}-{{form.value.kind}}-{{form.value.name}}-{{form.value.stock}}</strong></p>
     <p><strong>Form Status: {{form.status}} - ID Status {{form.controls['id'].status}}</strong></p>
-<!-- 
-    <div class="table_form__field_container">
-        <label for="id">Product ID</label>
-        <input type="number" name="id" value="{{input_values.id}}" #input_id="ngModel" [(ngModel)]="product.id" required>
-        <span class="table_form--warning" *ngIf="input_id.touched && !input_id.valid">
-            Product ID field is required
-        </span>
-    </div>
 
-    <div class="table_form__field_container">
-        <label for="kind">Product kind</label>
-        <select name="kind" id="select_kind" value="{{input_values.kind}}" #input_kind="ngModel" [(ngModel)]="product.kind" required>
-            <option *ngFor="let kind of product_kinds" value="{{kind}}">{{kind}}</option>
-        </select>
-        <span class="table_form--warning" *ngIf="input_kind.touched && !input_kind.valid">
-            Product Kind field is required
-        </span>
-    </div>
-
-    <div class="table_form__field_container">
-        <label for="name">Product Name</label>
-        <input type="text" name="name" value="{{input_values.name}}" #input_name="ngModel" [(ngModel)]="product.name" required>
-        <span class="table_form--warning" *ngIf="input_name.touched && !input_name.valid">
-            Product Name field is required
-        </span>
-    </div>
-
-    <div class="table_form__field_container">
-        <label for="stock">Existing stock</label>
-        <input type="number" name="stock" value="{{input_values.stock}}" #input_stock="ngModel" [(ngModel)]="product.stock" required>
-        <span class="table_form--warning" *ngIf="input_stock.touched && !input_stock.valid">
-            Stock field is required
-        </span>
-    </div>
-    
     <button class="table_form--clear" (click)="formReset()">Clear all fields</button>
     
-    <input type="submit" value="send" [disabled]="!TableForm.form.valid" (click)="onSubmit(TableForm)">
- -->
+    <input type="submit" value="send" [disabled]="!form.valid" (click)="onSubmit()">
 </form>
