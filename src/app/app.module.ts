@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { TableAndFormService } from './services/tableAndForm.service';
@@ -26,7 +27,7 @@ import { TableFormComponent } from './table-form/table-form.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, FormsModule
+    AppRoutingModule, FormsModule, ReactiveFormsModule
   ],
   providers: [AppRoutingModule, TableAndFormService],
   bootstrap: [AppComponent]
