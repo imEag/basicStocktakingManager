@@ -6,20 +6,21 @@ Basic Stocktaking manager is a reactive web application that is meant to be a st
 ## Features
 
 - Interactive and reactive table
+- User can create, edit and delete information
 - Single Page Application
 - Responsive desing
 
 
 ## Tech Stack
 
-**Client:** HTML, CSS, JavaScript, AngularJS, 
+**Client:** HTML, CSS, JavaScript, AngularJS
 
 
 
 ## Screenshots
 
-![App Screenshot][(https://i.ibb.co/ZNncS76/protfoliologo.png)](https://i.ibb.co/5cV3cCb/BSM.png)
-
+![App Screenshot](https://i.ibb.co/bFfVt4X/BSMLogo2.png)
+![App Screenshot](https://i.ibb.co/5cV3cCb/BSM.png)
 
 ## License
 
